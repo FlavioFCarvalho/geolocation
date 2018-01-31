@@ -2,7 +2,7 @@ const restify = require("restify")
 
 const knex = require('knex')({
 
-    client: 'msyql',
+    client: 'mysql',
     connection: {
         host : '127.0.0.1',
         user : 'root',
@@ -23,6 +23,13 @@ server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
 
 server.get("/all", function(req, res, next){
+
+    //Buscando todos os dados da tabela places
+    knex('places').then((dados) =>{
+        res.send(dados);
+    }, next)
+
+    return next();
 
 });
 
