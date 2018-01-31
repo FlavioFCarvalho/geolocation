@@ -1,5 +1,17 @@
 const restify = require("restify")
 
+const knex = require('knex')({
+
+    client: 'msyql',
+    connection: {
+        host : '127.0.0.1',
+        user : 'root',
+        password : 'root',
+        database : 'maps' 
+
+    }
+});
+
 const server = restify.createServer({
     name: "myapp",
    
