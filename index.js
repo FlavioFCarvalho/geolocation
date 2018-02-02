@@ -1,7 +1,7 @@
 const restify = require("restify")
 
 const  googleMapsClient = require('@google/maps').createClient({
-    key: 'Chave'
+    key: 'Chave',
     Promise: Promise
   });
 
@@ -50,7 +50,9 @@ server.post("/geocode", function(req, res, next){
 
         const place_id = response.json.results[0].place_id;
 
-        res.send({place_id,address});
+        const image = `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=5&size=400x400&sensor=false`;
+
+        res.send({place_id,address,image});
     })
     .catch((err) => {
         res.send(err);
